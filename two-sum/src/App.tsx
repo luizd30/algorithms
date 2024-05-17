@@ -1,14 +1,37 @@
 import "./App.css";
-import { bruteForce } from "./utils/twoSum";
+import { bruteForce, hashmap } from "./utils/twoSum";
 
 function App() {
-  const nums: number[] = [2, 7, 11, 15];
-  const target: number = 9;
-  const result = bruteForce(nums, target);
+  const arrayOfNumbers = [
+    {
+      nums: [2, 7, 11, 15],
+      target: 9,
+    },
+    {
+      nums: [3, 2, 4],
+      target: 6,
+    },
+    {
+      nums: [3, 3],
+      target: 6,
+    },
+  ];
 
   return (
     <>
-      <p>{result}</p>
+      <h2>Brute Force</h2>
+      {arrayOfNumbers.map(({ nums, target }, index) => (
+        <h3 key={index}>
+          {JSON.stringify(nums)} = {bruteForce(nums, target).join(", ")}
+        </h3>
+      ))}
+
+      <h2>Hash Map</h2>
+      {arrayOfNumbers.map(({ nums, target }, index) => (
+        <h3 key={index}>
+          {JSON.stringify(nums)} = {hashmap(nums, target).join(", ")}
+        </h3>
+      ))}
     </>
   );
 }
